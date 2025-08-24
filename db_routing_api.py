@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 db0 = {
-    'host': os.environ.get('DB_HOST', '127.0.0.1'),          # default fallback optional
+    'host': os.environ.get('DB_HOST'),               # ngrok host
     'user': os.environ.get('DB_USER', 'guest_mysql'),            # root or MySQL user
     'password': 'Ambin123456_123456', # database password
     'database': 'new_refined_rfid',  # database name
