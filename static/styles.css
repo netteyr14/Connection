@@ -73,6 +73,26 @@ body {
   background-color: #ffec66;
 }
 
+@media (max-width: 768px) {
+  .navbar .h1 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 5px;
+    padding-right: 30px;
+  }
+}
+
 #carouselWindow {
   width: 90vw;
   max-width: 1800px; /* increase max width */
@@ -86,7 +106,10 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   overflow: hidden;
+  /* Tablets (portrait, wider screens) */
+  /* Optional: target iPhone 11 specifically */
   /* Optional: target Lenovo Legion Y70 specifically */
+  /* Applies when screen is wider than tall (landscape) */
 }
 #carouselWindow .carousel-inner {
   height: 100%;
@@ -98,33 +121,15 @@ body {
      object-fit: cover;
   display: block;
 }
-@media only screen and (orientation: landscape) and (max-device-width: 2400px) and (min-device-height: 1080px) and (-webkit-device-pixel-ratio: 2.625) {
+@media (max-width: 768px) {
   #carouselWindow {
-    /* same #carouselWindow rules here */
+    width: 95vw;
+    height: 22vh;
   }
-  #carouselWindow #carouselWindow {
-    width: 9vw;
-    max-width: 180px;
-    height: 8vh;
-    max-height: 120px;
-    margin-top: 25px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  #carouselWindow #carouselWindow .carousel-inner {
-    height: 100%;
-  }
-  #carouselWindow #carouselWindow .carousel-inner .carousel-item img {
-    height: 100%;
-    width: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
-    display: block;
+}
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  #carouselWindow {
+    height: 32vh; /* custom tweak for iPhone 11 */
   }
 }
 
@@ -137,11 +142,15 @@ body {
 }
 
 .tab-pane {
-  font-size: 15px;
   background: white;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+@media (max-width: 768px) {
+  .tab-pane {
+    padding: 1rem;
+  }
 }
 
 .table-responsive-scroll {
@@ -170,6 +179,12 @@ table td {
   vertical-align: middle;
   text-align: center;
 }
+@media (max-width: 768px) {
+  table th,
+  table td {
+    font-size: 6px;
+  }
+}
 
 .table-bordered {
   border: none;
@@ -191,15 +206,37 @@ table td {
   border-radius: 10px;
   font-size: 0.5rem;
 }
+@media (max-width: 768px) {
+  #table_window {
+    width: 95vw;
+    height: 22vh;
+    top: 22%;
+  }
+}
 
 #rfidMsg {
   font-size: 20px;
+}
+@media (max-width: 768px) {
+  #rfidMsg {
+    font-size: 10px;
+  }
 }
 
 #searchInput {
   font-size: 20px;
 }
+@media (max-width: 768px) {
+  #searchInput {
+    font-size: 10px;
+  }
+}
 
 .btn {
   font-size: 20px;
+}
+@media (max-width: 768px) {
+  .btn {
+    font-size: 10px;
+  }
 }/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,33 @@
+# Start with a lightweight Python image
+FROM python:3.11-slim
+
+# Install system packages (nginx + others)
+RUN apt-get update && apt-get install -y \
+    nginx \
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set work directory
+WORKDIR /app
+
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy your application code
+COPY . .
+
+# Remove default nginx config
+RUN rm /etc/nginx/sites-enabled/default
+
+# Add our nginx config
+COPY nginx.conf /etc/nginx/conf.d/app.conf
+
+# Add supervisord config to manage multiple processes
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose port (Render will map it)
+EXPOSE 80
+
+# Start supervisor (which will run nginx + waitress)
+CMD ["/usr/bin/supervisord", "-n"]

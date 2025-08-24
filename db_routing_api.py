@@ -8,11 +8,11 @@ import os
 app = Flask(__name__)
 
 db0 = {
-    'host': '192.168.1.7',
-    'user': 'guest_mysql',               # root or MySQL user
-    'password': 'Ambin123456_123456', # database password
-    'database': 'new_refined_rfid',  # database name
-    'port': 3306                 # default MySQL port
+    'host': os.environ.get('DB_HOST'),                   # ngrok host
+    'user': 'guest_mysql',                                # root or MySQL user
+    'password': 'Ambin123456_123456',                     # database password
+    'database': 'new_refined_rfid',                      # database name
+    'port': os.environ.get('DB_PORT')                     # default MySQL port
 }
 
 def connect_to_database_rfid():
@@ -250,7 +250,7 @@ def search_professors():
 
 if __name__ == '__main__':
     try:
-        app.run(debug=True, host='127.0.0.1')
+        app.run(debug=True, host='0.0.0.0')
     finally:
         if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
             print("\n[INFO] Exiting...")

@@ -85,6 +85,28 @@ body {
   background-color: $background-color;
 }
 
+.navbar{
+  @media (max-width: 768px) {
+      .h1{
+        font-size: 15px;
+      }
+  }
+}
+
+.navbar-toggler-icon {
+  @media (max-width: 768px) {
+      width: 10px;
+      height: 10px;
+  }
+}
+
+.container-fluid{
+  @media (max-width: 768px) {
+      padding-left: 5px;
+      padding-right: 30px;
+  }
+}
+
 #carouselWindow {
   width: 90vw;
   max-width: 1800px;   /* increase max width */
@@ -112,60 +134,57 @@ body {
     }
   }
 
-//   /* Tablets (portrait, wider screens) */
-// @media (max-width: 768px) {
-//   width: 95vw;
-//   height: 40vh;
-// }
+  /* Tablets (portrait, wider screens) */
+  @media (max-width: 768px) {
+      width: 95vw;
+      height: 22vh;
+  }
+
 
 // /* General mobile (iPhone 11 + Legion Y70 both apply here) */
 // @media (max-width: 480px) {
 //   height: 35vh;
 // }
 
-// /* Optional: target iPhone 11 specifically */
-// @media only screen 
-//   and (device-width: 414px) 
-//   and (device-height: 896px) 
-//   and (-webkit-device-pixel-ratio: 2) {
-//     height: 32vh; /* custom tweak for iPhone 11 */
-// }
+/* Optional: target iPhone 11 specifically */
+@media only screen 
+  and (device-width: 414px) 
+  and (device-height: 896px) 
+  and (-webkit-device-pixel-ratio: 2) {
+    height: 32vh; /* custom tweak for iPhone 11 */
+}
 
   /* Optional: target Lenovo Legion Y70 specifically */
-  @media only screen 
-    and (orientation: landscape)
-    and (max-device-width: 2400px)
-    and (min-device-height: 1080px)
-    and (-webkit-device-pixel-ratio: 2.625) {
-    /* same #carouselWindow rules here */
-    #carouselWindow {
-      width: 9vw;
-      max-width: 180px;
-      height: 8vh;
-      max-height: 120px;
-      margin-top: 25px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      overflow: hidden;
+  /* Applies when screen is wider than tall (landscape) */
+  // @media only screen and (orientation: landscape) {
+  //   #carouselWindow {
+  //     width: 90vw;
+  //     max-width: 1800px;   /* increase max width */
+  //     height: 88vh;        /* increase height */
+  //     max-height: 1200px;   /* increase max height */
+  //     margin-top: 25px;
+  //     position: absolute;
+  //     top: 50%;
+  //     left: 50%;
+  //     transform: translate(-50%, -50%);
+  //     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  //     border-radius: 10px;
+  //     overflow: hidden;
 
-      .carousel-inner {
-        height: 100%;
+  //     .carousel-inner {
+  //       height: 100%;
 
-        .carousel-item { //for images
-          img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            display: block;
-          }
-        }
-      }
-    }
-  }
+  //       .carousel-item {
+  //         img {
+  //           height: 100%;
+  //           width: 100%;
+  //           object-fit: cover;
+  //           display: block;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 .nav-pills {
@@ -180,11 +199,14 @@ body {
 }
 
 .tab-pane {
-  font-size: 15px;
   background: white;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 768px) {
+      padding: 1rem;
+  }
 }
 
 .table-responsive-scroll {
@@ -192,6 +214,7 @@ body {
   overflow-y: auto;
   border-radius: 0.5rem;
   border: 1px solid #dee2e6;
+  
 }
 
 thead {
@@ -214,6 +237,10 @@ table {
   td {
     vertical-align: middle;
     text-align: center;
+    
+    @media (max-width: 768px) {
+      font-size: 6px;
+    }
   }
 }
 
@@ -238,16 +265,31 @@ table {
   transform: translate(-50%, -50%);
   border-radius: 10px;
   font-size: 0.5rem;
+
+  @media (max-width: 768px) {
+      width: 95vw;
+      height: 22vh;
+      top: 22%;
+  }
 }
 
 #rfidMsg{
   font-size: 20px;
+  @media (max-width: 768px) {
+      font-size: 10px;
+  }
 }
 
 #searchInput{
   font-size: 20px;
+  @media (max-width: 768px) {
+      font-size: 10px;
+  }
 }
 
 .btn{
   font-size: 20px;
+  @media (max-width: 768px) {
+      font-size: 10px;
+  }
 }
