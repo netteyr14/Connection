@@ -8,8 +8,8 @@ import os
 app = Flask(__name__)
 
 db0 = {
-    'host': '192.168.1.7',
-    'user': 'guest_mysql',               # root or MySQL user
+    'host': os.environ.get('DB_HOST', '127.0.0.1'),          # default fallback optional
+    'user': os.environ.get('DB_USER', 'guest_mysql'),            # root or MySQL user
     'password': 'Ambin123456_123456', # database password
     'database': 'new_refined_rfid',  # database name
     'port': 3306                 # default MySQL port
