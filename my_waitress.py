@@ -1,5 +1,6 @@
 from waitress import serve
 from db_routing_api import app
+import os
 
 if __name__ == '__main__':
     print("[INFO] Starting the server...")
