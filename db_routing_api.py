@@ -70,36 +70,32 @@ init_db_pool_rfid()
 #     return None
 
 # API route for frontend JS
+
+def fetch_all(query, params=None):
+    conn = pool.get_connection()
+    cursor = conn.cursor(dictionary=True)
+    try:
+        cursor.execute(query, params or ())
+        return cursor.fetchall()
+    finally:
+        cursor.close()
+        conn.close()
+
 @app.route('/api/data/students')
 def get_data_logs_stud():
-    connection = pool.get_connection()
-    cursor = connection.cursor(dictionary=True)
-
     # Get only today's records #the table is rfid_today_only_view(VIEWS). Also this view is already modified to use where clause
     # to get only today's records
-    sql = "SELECT * FROM tbl_views_logs_today_stud ORDER BY logs_date DESC"
-    cursor.execute(sql)
-    data = cursor.fetchall()
-
-    cursor.close()
-    connection.close()
-    return jsonify(data)
-
+        sql = "SELECT * FROM tbl_views_logs_today_stud ORDER BY logs_date DESC"
+        data = fetch_all(sql)
+        return jsonify(data)
+        
 @app.route('/api/data/professors')
 def get_data_logs_prof():
-    connection = pool.get_connection()
-    cursor = connection.cursor(dictionary=True)
-
     # Get only today's records #the table is rfid_today_only_view(VIEWS). Also this view is already modified to use where clause
     # to get only today's records
-    sql = "SELECT * FROM tbl_views_logs_today_prof ORDER BY logs_date DESC"
-    cursor.execute(sql)
-    data = cursor.fetchall()
-
-    cursor.close()
-    connection.close()
-    return jsonify(data)
-
+        sql = "SELECT * FROM tbl_views_logs_today_prof ORDER BY logs_date DESC"
+        data = fetch_all(sql)
+        return jsonify(data)
 
 # @app.route('/api/nodes/<path:node>/dates/<path:date>')
 # def get_weather_by_node_and_date(node, date):
@@ -219,27 +215,26 @@ def search_students():
 
     conn = pool.get_connection()
     cursor = conn.cursor(dictionary=True)
-    print("Query string from frontend:", query)
-
-    like_query = f"%{query}%"
-    
-    cursor.execute("""
-        SELECT * FROM tbl_views_logs_today_stud
-        WHERE school_id LIKE %s
-           OR fname LIKE %s
-           OR lname LIKE %s
-           OR lab_name LIKE %s
-           OR TIME(logs_date) LIKE %s
-        ORDER BY logs_date DESC
-    """, (like_query, like_query, like_query, like_query, like_query))
-    
-    results = cursor.fetchall()
-    print("Query for SQL LIKE:", query)
-    print("Results found:", len(results))
-    cursor.close()
-    conn.close()
-
-    return jsonify(results)
+    try:
+        # print("Query string from frontend:", query)
+        like_query = f"%{query}%"
+        cursor.execute("""
+            SELECT * FROM tbl_views_logs_today_stud
+            WHERE school_id LIKE %s
+               OR fname LIKE %s
+               OR lname LIKE %s
+               OR lab_name LIKE %s
+               OR TIME(logs_date) LIKE %s
+            ORDER BY logs_date DESC
+        """, (like_query, like_query, like_query, like_query, like_query))
+        
+        results = cursor.fetchall()
+        print("Query for SQL LIKE:", query)
+        print("Results found:", len(results))
+        return jsonify(results)
+    finally:
+        cursor.close()
+        conn.close()
 
 @app.route('/search/professors', methods=['POST'])
 def search_professors():
@@ -248,27 +243,26 @@ def search_professors():
 
     conn = pool.get_connection()
     cursor = conn.cursor(dictionary=True)
-    print("Query string from frontend:", query)
-
-    like_query = f"%{query}%"
-    
-    cursor.execute("""
-        SELECT * FROM tbl_views_logs_today_prof
-        WHERE school_id LIKE %s
-           OR fname LIKE %s
-           OR lname LIKE %s
-           OR lab_name LIKE %s
-           OR TIME(logs_date) LIKE %s
-        ORDER BY logs_date DESC
-    """, (like_query, like_query, like_query, like_query, like_query))
-    
-    results = cursor.fetchall()
-    print("Query for SQL LIKE:", query)
-    print("Results found:", len(results))
-    cursor.close()
-    conn.close()
-
-    return jsonify(results)
+    try:
+        # print("Query string from frontend:", query)
+        like_query = f"%{query}%"
+        cursor.execute("""
+            SELECT * FROM tbl_views_logs_today_prof
+            WHERE school_id LIKE %s
+               OR fname LIKE %s
+               OR lname LIKE %s
+               OR lab_name LIKE %s
+               OR TIME(logs_date) LIKE %s
+            ORDER BY logs_date DESC
+        """, (like_query, like_query, like_query, like_query, like_query))
+        
+        results = cursor.fetchall()
+        print("Query for SQL LIKE:", query)
+        print("Results found:", len(results))
+        return jsonify(results)
+    finally:
+        cursor.close()
+        conn.close()
 
 if __name__ == '__main__':
     try:
