@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from datetime import datetime
 import mysql.connector
-from mysql.connector import Error
+from mysql.connector import Error import pooling
 import os
 # import time
 
@@ -20,10 +20,14 @@ def connect_to_database_rfid():
     """Establish a secure connection to the MySQL database."""
     try:
         print(f"Connecting to database at {db0['host']} on port {db0['port']}")
-        connection = mysql.connector.connect(**db0)
+        pool = pooling.MySQLConnectionPool(
+            pool_name="mypool",
+            pool_size=5,   # number of connections kept alive
+            **db0
+        )
         if connection.is_connected():
             print("Database connection successful!")
-            return connection
+            return pool
     except Error as e:
         print(f"Database connection error: {e}")
     return None
@@ -51,7 +55,7 @@ def connect_to_database_rfid():
 # API route for frontend JS
 @app.route('/api/data/students')
 def get_data_logs_stud():
-    connection = connect_to_database_rfid()
+    connection = pool.connect_to_database_rfid()
     cursor = connection.cursor(dictionary=True)
 
     # Get only today's records #the table is rfid_today_only_view(VIEWS). Also this view is already modified to use where clause
@@ -66,7 +70,7 @@ def get_data_logs_stud():
 
 @app.route('/api/data/professors')
 def get_data_logs_prof():
-    connection = connect_to_database_rfid()
+    connection = pool.connect_to_database_rfid()
     cursor = connection.cursor(dictionary=True)
 
     # Get only today's records #the table is rfid_today_only_view(VIEWS). Also this view is already modified to use where clause
@@ -147,7 +151,7 @@ def receive_rfid_uid():
     print(f"Received UID: {uid}")
     print(f"Received Lab: {lab}")
     try:
-        connection = connect_to_database_rfid()
+        connection = pool.connect_to_database_rfid()
         cursor = connection.cursor() #use the dictionary=True as parameters if you to get results
                                                     #as dicts instead of typical tuples which is access as indices
         # 1. Check if UID is registered
@@ -196,7 +200,7 @@ def search_students():
     data = request.get_json()
     query = data.get('query', '')
 
-    conn = connect_to_database_rfid()
+    conn = pool.connect_to_database_rfid()
     cursor = conn.cursor(dictionary=True)
     print("Query string from frontend:", query)
 
@@ -225,7 +229,7 @@ def search_professors():
     data = request.get_json()
     query = data.get('query', '')
 
-    conn = connect_to_database_rfid()
+    conn = pool.connect_to_database_rfid()
     cursor = conn.cursor(dictionary=True)
     print("Query string from frontend:", query)
 
