@@ -8,11 +8,12 @@ import os
 app = Flask(__name__)
 
 db0 = {
-    'host': os.environ.get('DB_HOST'),                   # ngrok host
-    'user': 'guest_mysql',                                # root or MySQL user
-    'password': 'Ambin123456_123456',                     # database password
+    'host': 'mysql-cstakiosk-cstakiosk.i.aivencloud.com',                   # ngrok host
+    'user': 'avnadmin',                                # root or MySQL user
+    'password': 'AVNS_xKZXtQ4D-BZ6fS6lkau',                     # database password
     'database': 'new_refined_rfid',                      # database name
-    'port': os.environ.get('DB_PORT')                     # default MySQL port
+    'port': 24736,                                    # default MySQL port
+    'ssl': os.environ.get('AIVEN_CA_CERT')            # CA.PEM or Just copy paste the token
 }
 
 def connect_to_database_rfid():
