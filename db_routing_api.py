@@ -13,7 +13,7 @@ db0 = {
     'password': 'AVNS_xKZXtQ4D-BZ6fS6lkau',                     # database password
     'database': 'new_refined_rfid',                      # database name
     'port': 24736,                                    # default MySQL port
-    'ssl': os.environ.get('AIVEN_CA_CERT')            # CA.PEM or Just copy paste the token
+    'ssl_ca': os.environ.get('AIVEN_CA_CERT')            # CA.PEM or Just copy paste the token
 }
 
 def connect_to_database_rfid():
