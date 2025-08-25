@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from datetime import datetime
 import mysql.connector
-from mysql.connector import Error import pooling
+from mysql.connector import Error, pooling
 import os
 # import time
 
