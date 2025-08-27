@@ -32,8 +32,9 @@ COPY SM_API_N_WEB/my_waitress.py .
 # Update package lists, install nginx and supervisor
 # rm -rf /var/lib/apt/lists/* cleans up apt cache to reduce image size
 RUN apt-get update && \
-    apt-get install -y nginx supervisor && \
+    apt-get install -y nginx supervisor netcat && \
     rm -rf /var/lib/apt/lists/*
+    
 
 # -----------------------------------------------
 # Copy nginx configuration
