@@ -12,7 +12,7 @@ WORKDIR /app
 # Copy only the requirements.txt first to leverage Docker layer caching
 COPY SM_API_N_WEB/requirements.txt .
 COPY SM_API_N_WEB/templates ./templates
-COPY SM_API_N_WEB/templates ./static
+COPY SM_API_N_WEB/static ./static
 
 # Install all Python packages listed in requirements.txt
 # --no-cache-dir prevents pip from storing the cache inside the image (saves space)
