@@ -8,11 +8,12 @@ import os
 app = Flask(__name__)
 
 db0 = {
-    'host': 'mysql-cstakiosk-cstakiosk.i.aivencloud.com',                   # ngrok host
-    'user': 'avnadmin',                                # root or MySQL user
-    'password': 'AVNS_xKZXtQ4D-BZ6fS6lkau',                     # database password
-    'database': 'new_refined_rfid',                      # database name
-    'port': 24736                     # default MySQL port
+    'host': os.environ.get('DB_HOST'),                   # ngrok host
+    'user': os.environ.get('DB_USER'),                                # root or MySQL user
+    'password': os.environ.get('DB_PASS'),                     # database password
+    'database': os.environ.get('DB'),                      # database name
+    'port': os.environ.get('DB_PORT'),
+    'ssl_ca': os.environ.get('AIVEN_CA_CERT')# default MySQL port
 }
 pool = None
 
