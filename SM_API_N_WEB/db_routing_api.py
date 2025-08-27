@@ -64,7 +64,7 @@ init_db_pool_rfid()
 #     return None
 
 # API route for frontend JS
-def fetch_all(query, params=None){
+def fetch_all(query, params=None):
     conn = pool.get_connection()
     cursor = conn.cursor(dictionary=True)
 
@@ -74,7 +74,6 @@ def fetch_all(query, params=None){
     finally:
         cursor.close()
         conn.close()
-}
 
 @app.route('/api/data/students')
 def get_data_logs_stud():
