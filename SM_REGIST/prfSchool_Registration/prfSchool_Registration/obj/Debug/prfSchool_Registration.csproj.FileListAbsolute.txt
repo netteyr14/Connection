@@ -1,0 +1,22 @@
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\bin\Debug\prfSchool_Registration.exe.config
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\bin\Debug\prfSchool_Registration.exe
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\bin\Debug\prfSchool_Registration.pdb
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\obj\Debug\prfSchool_Registration.csprojResolveAssemblyReference.cache
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\obj\Debug\prfSchool_Registration.Main.resources
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\obj\Debug\prfSchool_Registration.Properties.Resources.resources
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\obj\Debug\prfSchool_Registration.csproj.GenerateResource.Cache
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\obj\Debug\prfSchool_Registration.exe
+C:\Users\Netteyr14\AppData\Local\Temporary Projects\prfSchool_Registration\obj\Debug\prfSchool_Registration.pdb
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\bin\Debug\prfSchool_Registration.exe.config
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.exe
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.pdb
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\bin\Debug\prfSchool_Registration.exe
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\bin\Debug\prfSchool_Registration.pdb
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.Dashboard.resources
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.Login.resources
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.Properties.Resources.resources
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.csproj.GenerateResource.Cache
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\bin\Debug\Newtonsoft.Json.dll
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.csproj.AssemblyReference.cache
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchool_Registration.csproj.CoreCompileInputs.cache
+D:\School_Registration\prfSchool_Registration\prfSchool_Registration\obj\Debug\prfSchoo.9E121204.Up2Date

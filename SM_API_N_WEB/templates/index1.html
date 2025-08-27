@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {#
+  <meta name="viewport" content="width=1024"> #}
+  <title>Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <div class="offcanvas offcanvas-start" id="navbarToggleExternalContent">
+    <div class="p-4 d-flex justify-content-between align-items-center" id="side_panel">
+      <div id="side_panel_top">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h5 class="text-body-emphasis h4 mb-0">OPTIONS</h5>
+      </div>
+      <button type="button" id="btn_login" onclick="location.href='{{ url_for('index') }}'">HOME</button>
+    </div>
+
+    <div id="side_panel_mid">
+      <button type="button" class="fancy-hover-btn"
+        onclick="location.href='{{ url_for('students') }}'">STUDENTS</button>
+      <button type="button" class="fancy-hover-btn"
+        onclick="location.href='{{ url_for('professors') }}'">PROFESSORS</button>
+      <button type="button" class="fancy-hover-btn">FACILITIES</button>
+      <button type="button" class="fancy-hover-btn">ALL ABOUT US</button>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="container-fluid position-relative">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h1 class="navbar-brand mb-0 h1 mx-auto" style="cursor: default; user-select: none;">CSTA - Announcements and
+        Highlights</h1>
+    </div>
+  </nav>
+
+  <div id="carouselWindow" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/assets/lizett_ye.jpg" class="d-block w-100" alt="Image Slide">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/assets/fb_page.png" class="d-block w-100" alt="Image Slide">
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100" muted playsinline preload="auto">
+          <source
+            src="/static/assets/AQMqddu2m69pReEkXPDPMRKRQeBkgvTK_rKhmxfHIsrFOkZZo3ZzgiAhnLSZhP88zA68S2x2Bpl5XKsIt-2AHD6a.mp4"
+            type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100" muted playsinline preload="auto">
+          <source src="/static/assets/No video description...-fdown.net.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100" muted playsinline preload="auto">
+          <source
+            src="/static/assets/AQOJ1fXJ1f12iCuZkbvHu3A-KKGS3YSTeoSpil1eO1ovjGK_KvXRCnoPYyh9e7QnXalqc9InCGm0uHyNzoDndVPa.mp4"
+            type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselWindow" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselWindow" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+  <script src="/static/myjs_landing_page.js"></script>
+</body>
+
+</html>

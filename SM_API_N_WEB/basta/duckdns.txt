@@ -1,0 +1,1 @@
+Invoke-WebRequest -Uri "https://www.duckdns.org/update?domains=cstakiosk&token=9c096d70-6010-46aa-ab40-9f780d33913d&ip="

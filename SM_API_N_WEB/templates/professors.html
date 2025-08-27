@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <div class="offcanvas offcanvas-start" id="navbarToggleExternalContent">
+    <div class="p-4 d-flex justify-content-between align-items-center" id="side_panel">
+      <div id="side_panel_top">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h5 class="text-body-emphasis h4 mb-0">OPTIONS</h5>
+      </div>
+      <button type="button" id="btn_login" onclick="location.href='{{ url_for('index') }}'">HOME</button>
+    </div>
+
+    <div id="side_panel_mid">
+      <button id="btn_student" type="button" class="fancy-hover-btn active"
+        onclick="location.href='{{ url_for('students') }}'">STUDENTS</button>
+      <button id="btn_student" type="button" class="fancy-hover-btn active"
+        onclick="location.href='{{ url_for('professors') }}'">PROFESSORS</button>
+      <button type="button" class="fancy-hover-btn">FACILITIES</button>
+      <button type="button" class="fancy-hover-btn">ALL ABOUT US</button>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="container-fluid position-relative">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h1 class="navbar-brand mb-0 h1 mx-auto" style="cursor: default; user-select: none;">PROFESSORS</h1>
+    </div>
+  </nav>
+
+  <main id="table_window">
+    <div class="tab-content" id="nodeTabContent">
+      <div class="tab-pane fade show active" id="node1" role="tabpanel" aria-labelledby="node1-tab">
+        <div id="search_input_fonts" class="input-group mb-3">
+          <input type="text" id="searchInput" class="form-control" placeholder="Students"
+            aria-label="Recipient’s username" aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary" type="button" id="searchBtn">Search</button>
+          <button class="btn btn-outline-danger" type="button" id="clearSearchBtn">Clear</button>
+        </div>
+        <p id="rfidMsg" class="text-center text-sm text-gray-500 mt-2"></p>
+        <div class="table-responsive table-responsive-scroll">
+          <table class="table table-bordered mb-0" id="rfidTbl">
+            <thead class="table-light">
+              <tr>
+                <th>School ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Lab Name</th>
+                <th>Attendance</th>
+              </tr>
+            </thead>
+            <tbody id="rfidBody">
+              <!-- Data rows will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+        <div id="rfidMsg" class="text-danger"></div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+  <script src="/static/myjs_load_table_professors.js"></script>
+</body>
+
+</html>
