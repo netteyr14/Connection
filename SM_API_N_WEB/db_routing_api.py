@@ -17,7 +17,7 @@ db0 = {
 }
 pool = None
 
-def init_db_pool_rfid(){
+def init_db_pool_rfid():
     global pool
     try:
         pool= pooling.MySQLConnectionPool(
@@ -28,7 +28,7 @@ def init_db_pool_rfid(){
         print("[INFO] Database pool created successfully!")
     except Error as e:
         print(f"[ERROR] Database pool creation failed: {e}")
-}
+
 
 init_db_pool_rfid()
 # def connect_to_database_rfid():
