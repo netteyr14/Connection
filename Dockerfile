@@ -34,6 +34,11 @@ COPY SM_API_N_WEB/my_waitress.py .
 RUN apt-get update && \
     apt-get install -y nginx supervisor && \
     rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y nginx supervisor netcat && \
+    rm -rf /var/lib/apt/lists/*
+    
     
 
 # -----------------------------------------------
