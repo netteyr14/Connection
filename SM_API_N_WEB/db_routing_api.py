@@ -1,31 +1,47 @@
 from flask import Flask, request, jsonify, render_template
 from datetime import datetime
 import mysql.connector
-from mysql.connector import Error
+from mysql.connector import Error, pooling
 import os
 # import time
 
 app = Flask(__name__)
 
 db0 = {
-    'host': 'localhost',                   # ngrok host
-    'user': 'guest_mysql',                                # root or MySQL user
-    'password': 'Ambin123456_123456',                     # database password
-    'database': 'new_refined_rfid',                      # database name
-    'port': 3306                     # default MySQL port
+    'host': os.environ.get('DB_HOST'),                   # ngrok host
+    'user': os.environ.get('DB_USER'),                                # root or MySQL user
+    'password': os.environ.get('DB_PASS'),                     # database password
+    'database': os.environ.get('DB'),                      # database name
+    'port': os.environ.get('DB_PORT'),
+    'ssl_ca': os.environ.get('AIVEN_CA_CERT')# default MySQL port
 }
+pool = None
 
-def connect_to_database_rfid():
-    """Establish a secure connection to the MySQL database."""
+def init_db_pool_rfid():
+    global pool
     try:
-        print(f"Connecting to database at {db0['host']} on port {db0['port']}")
-        connection = mysql.connector.connect(**db0)
-        if connection.is_connected():
-            print("Database connection successful!")
-            return connection
+        pool= pooling.MySQLConnectionPool(
+            pool_name = "mypool",
+            pool_size = 5,
+            **db0
+        )
+        print("[INFO] Database pool created successfully!")
     except Error as e:
-        print(f"Database connection error: {e}")
-    return None
+        print(f"[ERROR] Database pool creation failed: {e}")
+
+
+init_db_pool_rfid()
+# def connect_to_database_rfid():
+#     """Establish a secure connection to the MySQL database."""
+#     try:
+#         print(f"Connecting to database at {db0['host']} on port {db0['port']}")
+#         connection = mysql.connector.connect(**db0)
+#         if connection.is_connected():
+#             print("Database connection successful!")
+#             return connection
+#     except Error as e:
+#         print(f"Database connection error: {e}")
+#     return None
 
 # db1 = {
 #     'host': 'localhost',
@@ -48,34 +64,31 @@ def connect_to_database_rfid():
 #     return None
 
 # API route for frontend JS
+def fetch_all(query, params=None):
+    conn = pool.get_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        cursor.execute(query, params or ())
+        return cursor.fetchall()
+    finally:
+        cursor.close()
+        conn.close()
+
 @app.route('/api/data/students')
 def get_data_logs_stud():
-    connection = connect_to_database_rfid()
-    cursor = connection.cursor(dictionary=True)
-
     # Get only today's records #the table is tbl_views_logs_today_stud(VIEWS). Also this view is already modified to use where clause
     # to get only today's records
     sql = "SELECT * FROM tbl_views_logs_today_stud ORDER BY logs_date DESC"
-    cursor.execute(sql)
-    data = cursor.fetchall()
-
-    cursor.close()
-    connection.close()
+    data = fetch_all(sql)
     return jsonify(data)
 
 @app.route('/api/data/professors')
 def get_data_logs_prof():
-    connection = connect_to_database_rfid()
-    cursor = connection.cursor(dictionary=True)
-
     # Get only today's records #the table is tbl_views_logs_today_prof(VIEWS). Also this view is already modified to use where clause
     # to get only today's records
     sql = "SELECT * FROM tbl_views_logs_today_prof ORDER BY logs_date DESC"
-    cursor.execute(sql)
-    data = cursor.fetchall()
-
-    cursor.close()
-    connection.close()
+    data = fetch_all(sql)
     return jsonify(data)
 
 @app.route('/search/students', methods=['POST'])
@@ -83,7 +96,7 @@ def search_students():
     data = request.get_json()
     query = data.get('query', '')
 
-    conn = connect_to_database_rfid()
+    conn = pool.get_connection()
     cursor = conn.cursor(dictionary=True)
     print("Query string from frontend:", query)
 
@@ -112,7 +125,7 @@ def search_professors():
     data = request.get_json()
     query = data.get('query', '')
 
-    conn = connect_to_database_rfid()
+    conn = pool.get_connection()
     cursor = conn.cursor(dictionary=True)
     print("Query string from frontend:", query)
 
@@ -182,7 +195,7 @@ def search_professors():
     
 #     return jsonify(data)
 
-# Main page (serves your HTML page)
+#Main Pages (Serves HTML Web Pages)
 @app.route('/')
 def index():
     return render_template('index1.html')  # Make sure your HTML is named index.html and inside a /templates folder. Flask can use PHP
@@ -342,28 +355,6 @@ def delete_reg():
     finally:
         cursor.close()
         connection.close()
-
-@app.route('/api/user/<int:user_id>', methods=['GET'])
-def get_user(user_id):
-    try:
-        conn = mysql.connector.connect(**db0)
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM tbl_views_registration WHERE id = %s", (user_id,))
-        row = cursor.fetchone()
-
-        if row:
-            return jsonify({
-                "fname": row[1],
-                "lname": row[2],
-                "user_type": row[3],
-                "sid": row[4],
-                "rfid": row[5]
-            })
-        else:
-            return jsonify({"error": "No data found"}), 404
-    finally:
-        cursor.close()
-        conn.close()
     
 #Main
 if __name__ == '__main__':
