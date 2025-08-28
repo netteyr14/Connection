@@ -10,12 +10,12 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 app = Flask(__name__)
 
 db0 = {
-    'host': os.environ.get('DB_HOST'),                   # ngrok host
-    'user': os.environ.get('DB_USER'),                                # root or MySQL user
-    'password': os.environ.get('DB_PASS'),                     # database password
-    'database': os.environ.get('DB'),                      # database name
-    'port': os.environ.get('DB_PORT'),
-    'ssl_ca': os.environ.get('AIVEN_CA_CERT')# default MySQL port
+    'host': os.environ.get('DB_HOST'),              # ngrok/aiven host
+    'user': os.environ.get('DB_USER'),              # root/mysql_acc/aiven user
+    'password': os.environ.get('DB_PASS'),          # database password for root/mysql_acc/aiven
+    'database': os.environ.get('DB'),               # database name for root/mysql_acc/aiven
+    'port': os.environ.get('DB_PORT'),              # default mysql/aiven port
+    'ssl_ca': os.environ.get('AIVEN_CA_CERT')       # path to aiven ca certificate
 }
 pool = None
 
