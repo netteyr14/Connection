@@ -357,12 +357,12 @@ def delete_reg():
         connection.close()
     
 #Main
-if __name__ == '__main__':
-    try:
-        app.run(debug=True, host='0.0.0.0')
-    finally:
-        if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-            print("\n[INFO] Exiting...")
+# if __name__ == '__main__':
+#     try:
+#         app.run(debug=True, host='0.0.0.0')
+#     finally:
+#         if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+#             print("\n[INFO] Exiting...")
 
 
 ## uncomment the code above for testing purposes
