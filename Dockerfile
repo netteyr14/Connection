@@ -70,4 +70,4 @@ EXPOSE 8080
 
 # -n flag tells supervisord to run in the foreground (required for Docker)
 # supervisord starts and monitors both Waitress and nginx inside the container
-CMD ["/usr/bin/supervisord", "-n"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf", "-n"]
