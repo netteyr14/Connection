@@ -22,7 +22,7 @@ function renderTable(dataArr) {
   rfidBody.innerHTML = '';
 
   if (dataArr.length === 0) {
-    rfidMsg.textContent = 'No scans found.';
+    rfidMsg.textContent = 'No scans today.';
     return;
   }
 
