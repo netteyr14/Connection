@@ -1,5 +1,4 @@
 # Use a lightweight Python image (slim variant) as the base
-# This provides Python 3.11 without unnecessary extras, keeping the image small
 FROM python:3.11-slim
 
 # Set the working directory inside the container
