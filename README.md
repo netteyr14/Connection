@@ -1,2 +1,2 @@
-Ser, di pa tapos 🥀
+Ser, di pa po tapos 🥀
 
