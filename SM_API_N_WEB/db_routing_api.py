@@ -4,6 +4,8 @@ import mysql.connector
 from mysql.connector import Error, pooling
 import os
 # import time
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 app = Flask(__name__)
 
